@@ -1,0 +1,308 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+<h:head>
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+	<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+	<title>Caveira Bussines</title>
+	<link href="assets/css/bootstrap.min.css" rel="stylesheet"></link> 
+	<h:outputScript library="js" name="assets/js/locale-primefaces.js"/>
+	
+<script>
+	jQuery(function(){
+	jQuery.noConflict();
+	});
+</script>
+	<style>
+body, h1 {
+	font-family: "Raleway", sans-serif
+}
+
+body, html {
+	height: 100%
+}
+.component {
+	line-height: 1.5em;
+	
+	width: 90%;
+	 
+	overflow: hidden;
+}
+.component .filler {
+	font-family: "Blokk", Arial, sans-serif;
+	color: #d3d3d3;
+}
+.bgimg {
+	 
+	width:  100%;
+	height: 100vh;
+	padding: 100px 0;
+	color: white;
+	background: url('img/slide_2.jpg'), url('img/slide_2.jpg')  ;
+	background-position: 30% 45%;
+	/* overflow: hidden;  */
+	background-size: cover;
+	
+	 
+	   
+}
+
+.menu .ui-selectonemenu-label {
+	background: #1C1C1C;
+}
+
+.panel .ui-selectonemenu-list {
+	background: #00008B;
+}
+
+.p {
+	font-size: 14px;
+	color: #FFFFF0;
+	font-weight: bold;
+	font-style: normal;
+}
+
+.pc {
+	font-family: "DIN Neuzeit Grotesk", Georgia, Serif;
+	font-size: 16px;
+	color: black;
+	font-weight: bold;
+	font-style: normal;
+}
+
+.cor_tabela {
+	font-family: "DIN Neuzeit Grotesk", Georgia, Serif;
+	font-size: 22px;
+	color: #2B4261;
+	font-weight: bold;
+	font-style: normal;
+	
+}
+.tablej {
+    border-collapse: collapse;
+    margin-bottom: 3em;
+    width: 86%;
+    background: #fff;
+    background-color: transparent !important; 
+    color: #83041E;
+    font-family: "DIN Neuzeit Grotesk", Georgia, Serif ;
+	font-size: 16px;
+	 
+} 
+.cabecalho {
+
+   text-align: center;
+   font-size: 25px;
+   font: 11px Arial, sans-serif;
+   font-weight: bold;
+   color: Snow;
+   background:  #008B45;
+
+}
+</style>
+
+</h:head>
+
+
+<h:body class="bgimg">
+ <p:growl id="msgs" showDetail="true" escape="false"/>
+	<div id="main" class="container-fluid" style="margin-top: 50px">
+
+		<div id="top" class="row">
+		
+			<div class="col-sm-3">
+				 
+				<h:form>
+					<p:panel visible="true" style="  width:350px; margin-bottom:2cm; background-color: #9400D3; ">
+						<h:panelGrid columns="2" cellpadding="6" cellspacing="2">
+							<p:outputLabel id="tipo_label" value="Jasiel: " styleClass="p" />
+
+							<h:selectOneMenu id="tipo" value="#{dropdownView.tipo}"
+								style="height:35px; width:180px;  "
+								styleClass="form-control; pc">
+								<p:ajax listener="#{dropdownView.onTipoChange}"
+									update="marca, modelo, ano_de_, :tabela_resultado" />
+								<f:selectItem itemLabel="Selecione" itemValue=""
+									noSelectionOption="true" />
+								<f:selectItems value="#{dropdownView.tipos}" />
+							</h:selectOneMenu>
+
+
+							<p:outputLabel id="marca_label" value="Marca: " styleClass="p" />
+							<h:selectOneMenu id="marca" value="#{dropdownView.marca}"
+								effect="fade" var="p"
+								style="height:35px; width:180px;  "
+								styleClass="form-control; pc">
+								<p:ajax listener="#{dropdownView.onMarcaChange}"
+									update="modelo, ano_de_, :tabela_resultado" />
+								<f:selectItem itemLabel="Selecione" itemValue=""
+									noSelectionOption="true" />
+								<f:selectItems value="#{dropdownView.marcas}" />
+							</h:selectOneMenu>
+
+							<p:outputLabel id="modelo_label" value="Modelo: " styleClass="p" />
+							<h:selectOneMenu id="modelo" value="#{dropdownView.modelo}"
+								effect="fade" var="p"
+								style="height:35px; width:180px;  "
+								styleClass="form-control; pc">
+								<p:ajax listener="#{dropdownView.onModeloChange}"
+									update="ano_de_, ano_ate_ , :tabela_resultado" />
+								<f:selectItem itemLabel="Selecione" itemValue=""
+									noSelectionOption="true" />
+								<f:selectItems value="#{dropdownView.modelos}" />
+							</h:selectOneMenu>
+
+
+							<p:outputLabel id="ano_de_label" value="Ano De: " styleClass="p" />
+							<h:selectOneMenu id="ano_de_" value="#{dropdownView.ano_de}"
+								effect="fade" var="q"
+								style="height:35px; width:180px;  "
+								styleClass="form-control; pc">
+
+								<f:selectItem itemLabel="Selecione" itemValue="" />
+								<f:selectItems value="#{dropdownView.anos_de}"
+									noSelectionOption="true" />
+							</h:selectOneMenu>
+
+							<p:outputLabel id="ano_ate_label" value="Ano Ate: "
+								styleClass="p" />
+							<h:selectOneMenu id="ano_ate_" value="#{dropdownView.ano_ate}"
+								effect="fade" var="q"
+								style="height:35px; width:180px;  "
+								styleClass="form-control; pc">
+								<f:selectItem itemLabel="Selecione" itemValue="" />
+								<f:selectItems value="#{dropdownView.anos_de}"
+									noSelectionOption="true" />
+							</h:selectOneMenu>
+
+							
+							
+							<p:outputLabel id="prazo_label" value="Prazo: " styleClass="p" />
+							
+							 
+			       <p:calendar id ="calenda" 
+			            value="#{dropdownView.selectedDate}"
+                        locale="pt_BR"
+                        styleClass=" pc"
+                        popup="#{dropdownView.popup}"
+                        datePattern="#{dropdownView.pattern}"                    
+                        cellWidth="14px" cellHeight="12px" 
+                        style="width:166px; height:20px; line-height: 15px;  "  
+                        timeZone="GMT-3"  showOn="button"   />
+                         
+                         
+                         
+                         <p:outputLabel id="valor_label" value="Valor: " styleClass="p" />
+                          <p:inputText   id="txt3"    
+			    			   value="#{dropdownView.number3}"   effect="fade"  
+								style="height:35px; width:180px;  "
+								styleClass="form-control; pc" />
+                          <p:outputLabel id="valor2_label" value="" styleClass="p" />
+                          <p:slider 
+                          for="txt3" 
+                          step="100" 
+                          minValue="10000"  
+                          maxValue="1000000" 
+                          style="width:180px ;height:8px;  " range="true" displayTemplate="Between {min} and {max}" />
+                         
+						</h:panelGrid>
+ 
+						<p:separator />
+
+						<p:commandButton 
+						    value="Consultar" 
+						    update=":tabela_resultado"
+							actionListener="#{dropdownView.displayLocation}"
+							icon="ui-icon-check" 
+							styleClass="button" 
+							onstart="PF('statusDialog').show()" 
+							onsuccess="PF('statusDialog').hide()" />
+							
+						 
+
+							<p:dialog widgetVar="statusDialog" modal="true" draggable="true" 
+							closable="false" resizable="false" showHeader="true">
+            						<h2>Aguarde...</h2>
+            						<img src="http://www.ajaxload.info/images/exemples/19.gif" alt=""/>
+							</p:dialog>
+
+					</p:panel>
+
+
+
+				</h:form>
+			</div>
+			<div class="col-sm-6">
+
+				 
+
+			</div>
+			 
+		</div>
+		<!-- /#top -->
+ 
+		<hr />
+			<div  style="height: 400px; overflow: auto;"  >
+		<div id="list" class="component"  style="height: 400px; width:90%; overflow: auto;"> 
+ 
+ 		 <p:treeTable  id="tabela_resultado" 
+ 		 value="#{dropdownView.cotacao.root1}" 
+ 		 var="document" 
+ 		 selectionMode="single" 
+ 		 selection="#{ttSelectionView.selectedNode}" style="margin-top:0">
+        
+        <p:column headerText="Modelo">
+            <h:outputText value="#{document.modelo}" />
+        </p:column>
+        <p:column headerText="Marca">
+            <h:outputText value="#{document.marca}" />
+        </p:column>
+        <p:column headerText="Preço">
+            <h:outputText value="#{document.preco}" />
+        </p:column>
+    </p:treeTable>
+    
+ 
+				<p:commandButton 
+						    value="Simular" 
+						    
+							actionListener="#{dropdownView.redirect()}"
+							icon="ui-icon-check" 
+							styleClass="button" />
+			 <br/>
+	 <br/>
+	 <br/>
+	 
+	 	<p:separator />
+	 	
+	 	 
+	 	<!-- 
+	  		      <p:chart type="line" model="#{chartView.lineModel1}" style="height:300px;"/>
+ 
+				<p:chart type="line" model="#{chartView.lineModel2}" style="height:300px;"/>   -->
+		
+		<p:separator />
+</div>
+		</div>
+		 
+	</div>
+	 
+	 
+<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.scrolly.min.js"></script>
+	<script src="assets/js/jquery.poptrox.min.js"></script>
+	<script src="assets/js/skel.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+	<script src="assets/js/main.js"></script>
+	<script src="assets/js/ie/respond.min.js"></script> 
+
+
+</h:body>
+</html>
