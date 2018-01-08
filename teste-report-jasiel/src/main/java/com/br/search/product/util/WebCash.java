@@ -29,7 +29,8 @@ public class WebCash
 		    {
 				WebLog.logInfo(" Iniciando Pool de Conexao."); 
 		     
-				URI dbUri = new URI("postgres://qzzzemalgcxuej:6597e9b3e7709149a4c679e7dce21e7abb82024fb0ddcddba2241a9a8c214636@ec2-184-73-167-43.compute-1.amazonaws.com:5432/d35kk2dfeplt80");
+			 	URI dbUri = new URI("postgres://alkdilvjviisjf:531e2d2406c5c15a62ad0a50486ca27d672d55adcbf2be048d57e31840cb8cab@ec2-23-21-197-231.compute-1.amazonaws.com:5432/damhg9qgod2nds");
+				//URI dbUri = new URI("postgres://qzzzemalgcxuej:6597e9b3e7709149a4c679e7dce21e7abb82024fb0ddcddba2241a9a8c214636@ec2-184-73-167-43.compute-1.amazonaws.com:5432/d35kk2dfeplt80");
 
 		        String username = dbUri.getUserInfo().split(":")[0];
 		        String password = dbUri.getUserInfo().split(":")[1];
@@ -52,13 +53,13 @@ public class WebCash
 		        cpds.setPassword(password);
 		        cpds.setMinPoolSize(1);
 		        cpds.setAcquireIncrement(1);
-		        cpds.setMaxPoolSize(10); 
-		        cpds.setMaxStatements(50); 
+		        cpds.setMaxPoolSize(5); 
+		        cpds.setMaxStatements(5); 
 		        cpds.setCheckoutTimeout(20000); 
 		        cpds.setMaxIdleTime(900);
 		        cpds.setIdleConnectionTestPeriod(3000); 
 		        
 		        
-		        return cpds;
+		       return cpds;
 		    }
 }

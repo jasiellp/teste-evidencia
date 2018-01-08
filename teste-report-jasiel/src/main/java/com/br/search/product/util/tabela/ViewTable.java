@@ -126,8 +126,7 @@ public class ViewTable extends JFrame
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
 		JScrollPane scroll = new JScrollPane(table);
-		JViewport viewport = new JViewport();
-		// viewport.setView(fixedTable);
+		JViewport viewport = new JViewport(); 
 		viewport.setPreferredSize(fixedTable.getPreferredSize());
 		scroll.setRowHeaderView(viewport);
 		scroll.setCorner(JScrollPane.UPPER_LEFT_CORNER, fixedTable.getTableHeader());
@@ -144,7 +143,7 @@ public class ViewTable extends JFrame
 		    {
 		       
 		        
-		        final int row = table.getSelectedRow();
+		        final int row    = table.getSelectedRow();
 	            final int column = table.getSelectedColumn();
 	             
 		       
